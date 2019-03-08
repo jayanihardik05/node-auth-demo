@@ -4,7 +4,10 @@ const loginform_schema = new mongoose.Schema({
   email: {
     type: String
   },
-  passwored: {
+  password: {
+    type: String
+  },
+  confimPassword: {
     type: String
   }
 });

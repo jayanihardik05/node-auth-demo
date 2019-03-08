@@ -1,4 +1,5 @@
 const Student = require("../models/student");
+const validationregistation = require("../validation/student");
 
 exports.student_data = function(req, res) {
   Student.find({}, function(err, data) {
@@ -7,6 +8,10 @@ exports.student_data = function(req, res) {
 };
 
 exports.student_adddata = (req, res) => {
+  const { errors, isValid } = validationregistation(req.body);
+  if (!isValid) {
+    return res.status(300).json(errors)
+  }
   Student.create(req.body)
     .then(results => {
       res.status(201).json({

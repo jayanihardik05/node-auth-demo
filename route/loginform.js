@@ -5,9 +5,9 @@ const auth = require("../middleware/auth");
 
 router.get("/loginrecord", auth, logincontroller.logingetdata);
 
-router.post("/signup", logincontroller.signin);
+router.post("/signin", logincontroller.signin);
 
-router.post("/login", auth, logincontroller.login);
+router.post("/login", logincontroller.login);
 
 router.delete("/removelogin/:id", auth, logincontroller.deletelogin);
 
