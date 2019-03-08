@@ -10,7 +10,7 @@ exports.student_data = function(req, res) {
 exports.student_adddata = (req, res) => {
   const { errors, isValid } = validationregistation(req.body);
   if (!isValid) {
-    return res.status(300).json(errors)
+    return res.status(300).json(errors);
   }
   Student.create(req.body)
     .then(results => {

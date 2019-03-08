@@ -2,10 +2,7 @@ const loginform = require("../models/loginform");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const validationsignin = require("../validation/loginform");
-const validationlogin = require("../validation/login")
-
-
-
+const validationlogin = require("../validation/login");
 
 exports.logingetdata = (req, res) => {
   loginform.find({}, function(err, data) {
@@ -24,7 +21,7 @@ exports.signin = function(req, res) {
     .then(results => {
       if (results.length >= 1) {
         return res.status(405).json({
-          message: "Mail is exists"
+          message: "eMail is exists"
         });
       } else {
         bcrypt.hash(
@@ -42,6 +39,7 @@ exports.signin = function(req, res) {
                 password: hash,
                 confimPassword: hash
               });
+              console.log("data", data);
               loginform
                 .create(data)
                 .catch(err => {
@@ -84,7 +82,7 @@ exports.login = (req, res, next) => {
         if (result) {
           const token = jwt.sign(
             { id: results.id, email: results.email },
-            process.env.test,
+            process.env.test ? process.env.test : 'SECRET_KEY',
             {
               expiresIn: 10222
             }
