@@ -17,18 +17,18 @@ app.use("/api", require("./route/product"));
 app.use("/api", require("./route/student"));
 app.use("/login", require("./route/loginform"));
 
-// app.use((req, res, next) => {
-//   req.status = 404;
-//   const error = new Error("Route Not Found");
-//   next(error);
-// });
+app.use((req, res, next) => {
+  req.status = 404;
+  const error = new Error("Route Not Found");
+  next(error);
+});
 
-// app.use((error, req, res, next) => {
-//   res.status(req.status || 500).send({
-//     message: error.message,
-//     stack: error.stack
-//   });
-// });
+app.use((error, req, res, next) => {
+  res.status(req.status || 500).send({
+    message: error.message,
+    stack: error.stack
+  });
+});
 
 app.listen(2000, function() {
   console.log("server is run");

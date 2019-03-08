@@ -1,35 +1,29 @@
 const router = require("express").Router();
 const loginform = require("../models/loginform");
+const logincontroller = require("../controllers/loginform");
+const auth = require("../middleware/auth");
 
+router.get("/loginrecord", auth, logincontroller.logingetdata);
 
-router.get("/logindata", (req, res) => {
-  loginform.find({}, function(err, data) {
-    res.json(data);
-  });
-});
+router.post("/signup", logincontroller.signin);
 
-router.post("/addemail", function(req, res) {
-  loginform
-    .find({ email: req.body.email })
-    .exec()
-    .then(results => {
-      if (results.length >= 1) {
-        return res.status(405).json({
-          message: "Mail is exists"
-        });
-      } else {
-        loginform.create(req.body)
-        .catch(err =>{
-          res.status(504).json({
-            message: "You not Enter valid data"
-          })
-        })
-        .then(results => {
-          res.status(201).json({
-            message: "User is createrd"
-          });
-        });
-      }
-    });
-});
+router.post("/login", auth, logincontroller.login);
+
+router.delete("/removelogin/:id", auth, logincontroller.deletelogin);
+
+// router.put("/update/:id", auth, function(req, res) {
+//   loginform
+//     .findOneAndUpdate({ _id: req.params.id }, req.body)
+//     .then(book =>
+//       res.json({
+//         message: "Sucessfully Update record"
+//       })
+//     )
+//     .catch(err =>
+//       res.status(422).json({
+//         message: "Not Found"
+//       })
+//     );
+// });
+
 module.exports = router;

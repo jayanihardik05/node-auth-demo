@@ -1,55 +1,15 @@
 const router = require("express").Router();
-const Student = require("../models/school");
+const authToken = require("../middleware/auth");
+const Stucontrol = require("../controllers/student");
 
-router.get("/getdata", function(req, res) {
-  Student.find({}, function(err, data) {
-    res.json(data);
-  });
-});
+router.get("/getdata", authToken, Stucontrol.student_data);
 
-router.post("/add", (req, res) => {
-  Student.create(req.body)
-    .then(results => {
-      res.status(201).json({
-        message: "User is createrd"
-      });
-    })
-    .catch(err => {
-      res.status(504).json({
-        message: "Enter valid Data"
-      });
-    });
-});
+router.post("/add", authToken, Stucontrol.student_adddata);
 
-router.get("/singal/:Id", (req, res) => {
-  Student.findOne({ _id: req.params.Id }, function(err, result) {
-    res.json(result);
-    console.log(req.params.Id);
-  }).catch(err => console.log(message));
-});
+router.get("/singal/:Id", authToken, Stucontrol.student_singaldata);
 
-router.delete("/remove/:id", function(req, res) {
-  Student.findByIdAndRemove(req.params.id)
-    .then(results => {
-      res.status(201).json({
-        message: "Sucessfully Delete record"
-      });
-    })
-    .catch(err => {
-      res.status(504).json({
-        message: "Not Found"
-      });
-    });
-});
+router.delete("/remove/:id", authToken, Stucontrol.student_Deletedata);
 
-router.put("/update/:id", function(req, res) {
-  Student.findOneAndUpdate({ _id: req.params.id }, req.body)
-    .then(book => res.json({
-      message: "Sucessfully Update record"
-    }))
-    .catch(err => res.status(422).json({
-      message: "Not Found"
-    }));
-});
+router.put("/update/:id", authToken, Stucontrol.student_Updatedata);
 
 module.exports = router;
