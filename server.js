@@ -12,10 +12,17 @@ app.use(
     extended: false
   })
 );
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,DELETE,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
 
 app.use("/api", require("./route/product"));
 app.use("/api", require("./route/student"));
 app.use("/login", require("./route/loginform"));
+
 
 app.use((req, res, next) => {
   req.status = 404;
@@ -30,6 +37,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(2000, function() {
+app.listen(2000, function () {
   console.log("server is run");
 });

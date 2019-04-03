@@ -1,0 +1,122 @@
+<!-- Right Side Content Start -->
+<section id="content" class="seipkon-content-wrapper">
+   <div class="page-content">
+      <div class="container-fluid">
+         <!-- Breadcromb Row Start -->
+         <div class="row">
+            <div class="col-md-12">
+               <div class="breadcromb-area">
+                  <div class="row">
+                     <div class="col-md-6  col-sm-6">
+                        <div class="seipkon-breadcromb-left">
+                           <h3>Image Uploads</h3>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-sm-6">
+                        <div class="seipkon-breadcromb-right">
+                           <ul>
+                              <li>
+                                 <a [routerLink]="['/dashboard']" routerLinkActive="router-link-active">dashboard</a>
+                              </li>
+                              <li>Image Uploads</li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="row">
+            <div class="col-md-12">
+               <div class="page-box">
+                  <div class="form-example">
+                     <h3>Insert Image</h3>
+                     <div class="form-validation-box">
+                        <div class="form-wrap">
+                           <form [formGroup]="formstatic" (ngSubmit)="onsubmit(formstatic.value,formstatic.valid)"
+                              novalidate>
+                              <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="form-group"
+                                       [ngClass]="{'has-error':IsLoginSubmitted && !(formstatic.controls.name.valid), 'has-success': IsLoginSubmitted && (formstatic.controls.name.valid)}">
+                                       <input type="Name" placeholder="Enter Image Name " formControlName="name"
+                                          class="form-control" />
+                                       <span class="hellock"
+                                          *ngIf="IsLoginSubmitted && !(formstatic.controls.name.valid)"> </span>
+                                    </div>
+                                     <div class="form-group file-upload"
+                                       [ngClass]="{'has-error':IsLoginSubmitted && !(formstatic.controls.choosefile.valid), 'has-success': IsLoginSubmitted && (formstatic.controls.choosefile.valid)}">
+                                       <input type="file" class="custom-file-input form-control" id="customFile"
+                                          (change)="onselected($event)" formControlName="choosefile">
+                                       <span class="hellock"
+                                          *ngIf="IsLoginSubmitted && !(formstatic.controls.choosefile.valid)"></span>
+                                       <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <div class="row">
+                                          <div class="col-md-6">
+                                             <div class="form-layout-submit">
+
+                                                <button type="Submit" class="btn btn-info">
+                                                   Submit
+                                                </button>
+                                                <!-- <button type="submit" class="btn btn-danger">
+                                                   cancel
+                                                </button> -->
+
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-12">
+               <div class="page-box">
+                  <input type="text"
+                  class="form-control" placeholder="Search By Category" />
+                  <div class="table-responsive advance-table">
+                     <table id="datatables_example_1" class="table display table-bordered">
+                        <thead>
+                           <tr>
+                              <th>Image Name</th>
+                              <th>Image</th>
+                              <th>Delete</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr *ngFor="let item of Userregistation | paginate: { itemsPerPage: 4, currentPage: p }">
+                              <td>{{item.Name}}</td>
+                              <td>
+                                 <img [src]="environment + item.image1" height="100px" width="100px"
+                                    class="img img-rounded">
+                              </td>
+                              <td> <a tooltip="Delete" (click)=" DeleteNews(item._id)" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                 </a></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+               </div>
+            </div>
+         </div>
+         <!-- End Advance Table Row -->
+
+      </div>
+   </div>
+</section>

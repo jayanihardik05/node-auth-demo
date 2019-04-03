@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const product_schema = new mongoose.Schema({
   Name: String,
 	image1:String,
-	image2:String,
 	added_date:{
 		type: Date,
 		default: Date.now

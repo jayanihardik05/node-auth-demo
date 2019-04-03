@@ -1,0 +1,68 @@
+<!-- Login Page Header Area Start -->
+<div class="seipkon-login-page-header-area">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-4 col-sm-4">
+            <div class="login-page-logo">
+               <a href="index-2.html">
+                  <h1 class="logo"> BlueSoftSoftwre</h1>
+               </a>
+            </div>
+         </div>
+         <div class="col-md-8 col-sm-8">
+            <div class="login-page-logo-right">
+               <p>New to Seipkon?</p>
+               <a [routerLink]="['/registation']" routerLinkActive="active">Sign up</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Login Page Header Area End -->
+
+<!-- Login Form Start -->
+<div class="seipkon-login-form-area">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-4 col-md-offset-4">
+            <div class="login-form-box">
+               <h3>Sign in to Bluesoft</h3>
+
+               <form [formGroup]="regform" (ngSubmit)="onsubmit(regform.value,regform.valid)" novalidate>
+
+                  <div class="form-group"
+                     [ngClass]="{'has-error':IsLoginSubmitted && !(regform.controls.email.valid), 'has-success': IsLoginSubmitted && (regform.controls.email.valid)}">
+                     <input type="text" placeholder="Email or Username" class="form-control" formControlName="email">
+                     <span class="hellock" *ngIf="IsLoginSubmitted && !(regform.controls.email.valid)"> Email or Username
+                        required. </span>
+                  </div>
+
+                  <div class="form-group"
+                     [ngClass]="{'has-error':IsLoginSubmitted && !(regform.controls.password.valid), 'has-success': IsLoginSubmitted && (regform.controls.password.valid)}">
+                     <input type="password" placeholder="Password" class="form-control" formControlName="password">
+                     <span class="hellock" *ngIf="IsLoginSubmitted && !(regform.controls.password.valid)"> Password is
+                        required. </span>
+                  </div>
+
+                  <div class="form-group form-checkbox">
+                     <p class="lost-pass pull-right">
+                        <a href="#">forget you password?</a>
+                     </p>
+                  </div>
+
+                  <div class="form-group">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-layout-submit">
+                              <button routerLinkActive="active">Sign in</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -3,7 +3,7 @@ const loginform = require("../models/loginform");
 const logincontroller = require("../controllers/loginform");
 const auth = require("../middleware/auth");
 
-router.get("/loginrecord", auth, logincontroller.logingetdata);
+router.get("/loginrecord", logincontroller.logingetdata);
 
 router.post("/signin", logincontroller.signin);
 

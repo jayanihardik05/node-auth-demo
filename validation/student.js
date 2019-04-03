@@ -7,8 +7,6 @@ module.exports = function validationregistation(data) {
   data.name = !isEmpty(data.name) ? data.name : "";
   data.Address = !isEmpty(data.name) ? data.Address : "";
   data.phoneNumber = !isEmpty(data.name) ? data.phoneNumber : "";
-  data.Filed = !isEmpty(data.name) ? data.Filed : "";
-  data.City = !isEmpty(data.name) ? data.City : "";
 
   if (!validator.isLength(data.name, { min: 2, max: 30 })) {
     errors.name = "Name must be between 2 and 30 charecters ";
@@ -24,12 +22,6 @@ module.exports = function validationregistation(data) {
   }
   if (validator.isEmpty(data.phoneNumber)) {
     errors.phoneNumber = "phoneNumber Filed Reqiuerd";
-  }
-  if (validator.isEmpty(data.Filed)) {
-    errors.Filed = "Filed Reqiuerd";
-  }
-  if (validator.isEmpty(data.City)) {
-    errors.City = "City Filed Reqiuerd";
   }
 
   return {

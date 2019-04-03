@@ -5,23 +5,23 @@ const validationsignin = require("../validation/loginform");
 const validationlogin = require("../validation/login");
 
 exports.logingetdata = (req, res) => {
-  loginform.find({}, function(err, data) {
+  loginform.find({}, function (err, data) {
     res.json(data);
   });
 };
 
-exports.signin = function(req, res) {
+exports.signin = function (req, res) {
   const { errors, isValid } = validationsignin(req.body);
   if (!isValid) {
-    return res.status(300).json(errors);
+    return res.status(201).json(errors);
   }
   loginform
     .find({ email: req.body.email })
     .exec()
     .then(results => {
       if (results.length >= 1) {
-        return res.status(405).json({
-          message: "eMail is exists"
+        return res.status(200).json({
+          message: "Email is exists"
         });
       } else {
         bcrypt.hash(
@@ -29,12 +29,15 @@ exports.signin = function(req, res) {
           10,
           (err, hash) => {
             if (err) {
-              return res.status(500).json({
+              return res.status(200).json({
                 message: "Not found"
               });
             } else {
               console.log(req.body);
               var data = new loginform({
+                Name: req.body.Name,
+                PhoneNo: req.body.PhoneNo,
+                Pincode: req.body.Pincode,
                 email: req.body.email,
                 password: hash,
                 confimPassword: hash
@@ -43,13 +46,14 @@ exports.signin = function(req, res) {
               loginform
                 .create(data)
                 .catch(err => {
-                  res.status(504).json({
+                  return res.status(200).json({
                     message: "You not Enter valid data"
                   });
                 })
                 .then(results => {
-                  res.status(201).json({
-                    message: "User is createrd"
+                  return res.status(200).json({
+                    ResponseStatus: 0,
+                    message: "Registstion sucessfull"
                   });
                 });
             }
@@ -62,20 +66,20 @@ exports.signin = function(req, res) {
 exports.login = (req, res, next) => {
   const { errors, isValid } = validationlogin(req.body);
   if (!isValid) {
-    return res.status(300).json(errors);
+    return res.status(404).json(errors);
   }
   loginform
     .find({ email: req.body.email })
     .exec()
     .then(results => {
       if (results.length < 1) {
-        res.status(500).json({
+        res.status(200).json({
           message: "Mail not Found , User doesnot exist"
         });
       }
       bcrypt.compare(req.body.password, results[0].password, (err, result) => {
         if (err) {
-          return res.status(500).json({
+          return res.status(200).json({
             message: "Not found"
           });
         }
@@ -84,28 +88,29 @@ exports.login = (req, res, next) => {
             { id: results.id, email: results.email },
             process.env.test ? process.env.test : 'SECRET_KEY',
             {
-              expiresIn: 10222
+              expiresIn: 120000
             }
           );
 
-          return res.status(504).json({
+          return res.status(200).json({
+            ResponseStatus: 0,
             message: "Sucefull",
             token: token
           });
         }
-        res.status(401).json({
+        res.status(200).json({
           message: "Not Found"
         });
       });
     })
     .catch(err => {
-      res.status(500).json({
+      res.status(200).json({
         message: "Not found"
       });
     });
 };
 
-exports.deletelogin = function(req, res) {
+exports.deletelogin = function (req, res) {
   loginform
     .findByIdAndRemove(req.params.id)
     .then(results => {

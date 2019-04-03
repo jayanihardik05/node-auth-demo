@@ -11,11 +11,11 @@ const student_schema = new mongoose.Schema(
     phoneNumber: {
       type: Number
     },
-    Filed: {
+    lastname: {
       type: String
     },
-    City: {
-      type: String
+    DateofBirth:{
+      type:String
     }
   },
   {

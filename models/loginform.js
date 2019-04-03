@@ -1,6 +1,15 @@
 const mongoose = require("mongoose");
 
 const loginform_schema = new mongoose.Schema({
+  Name: {
+    type: String
+  },
+  PhoneNo: {
+    type: String
+  },
+  Pincode: {
+    type: String
+  },
   email: {
     type: String
   },

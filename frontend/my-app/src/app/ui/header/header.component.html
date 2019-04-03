@@ -1,0 +1,124 @@
+<div class="wrapper">
+  <!-- Main Header Start -->
+  <header class="main-header">
+    <!-- Logo Start -->
+    <div class="seipkon-logo">
+       <h1 class="logo">BlueSoft </h1>
+    </div>
+    <!-- Logo End -->
+
+    <!-- Header Top Start -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="header-top-section">
+          <div class="pull-left">
+            <!-- Collapse Menu Btn Start -->
+            <button type="button" id="sidebarCollapse" class=" navbar-btn">
+              <i class="fa fa-bars"></i>
+            </button>
+            <!-- Collapse Menu Btn End -->
+
+            <!-- Header Top Search Start -->
+            <div class="header-top-search">
+              <form>
+                <input type="search" placeholder="Search..." />
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+            <!-- Header Top Search End -->
+          </div>
+          <div class="header-top-right-section pull-right">
+            <ul class="nav nav-pills nav-top navbar-right">
+     
+              <li class="dropdown">
+                <a
+                  class="dropdown-toggle profile-toggle"
+                  href="#"
+                  data-toggle="dropdown"
+                >
+                  <img
+                    src="assets/img/avatar.jpg"
+                    class="profile-avator"
+                    alt="admin profile"
+                  />
+                  <div class="profile-avatar-txt">
+                    <p>Jhon Doe</p>
+                    <i class="fa fa-angle-down"></i>
+                  </div>
+                </a>
+                <div class="profile-box dropdown-menu animated bounceIn">
+                  <ul>
+                    <li>
+                      <a href="#"><i class="fa fa-user"></i> view profile</a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><i class="fa fa-pencil-square-o"></i> Edit profile</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-flash"></i> Activity Log</a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-wrench"></i> Setting</a>
+                    </li>
+                    <li>
+                      <a style="cursor:pointer" (click)="logout()"><i class="fa fa-power-off"></i> sign out </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <!-- Profile Toggle End -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Header Top End -->
+  </header>
+  <!-- Main Header End -->
+
+  <!-- Sidebar Start -->
+  <aside class="seipkon-main-sidebar">
+    <nav id="sidebar">
+      <!-- Sidebar Profile Start -->
+      <div class="sidebar-profile clearfix">
+        <div class="profile-avatar">
+          <img src="assets/img/avatar.jpg" alt="profile" />
+        </div>
+        <div class="profile-info">
+          <h3>Hardik</h3>
+          <p>Welcome Admin !</p>
+        </div>
+      </div>
+      <!-- Sidebar Profile End -->
+
+      <!-- Menu Section Start -->
+      <div class="menu-section">
+        <h3>General</h3>
+        <ul class="list-unstyled components">
+          <li class="active">
+            <a
+              [routerLink]="['/dashboard']"
+              routerLinkActive="router-link-active"
+            >
+              <i class="fa fa-dashboard"></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#ecommerce" data-toggle="collapse" aria-expanded="false">
+              <i class="fa fa-shopping-cart"></i>
+              My Pages
+            </a>
+            <ul class="collapse list-unstyled" id="ecommerce">
+              <li><a [routerLink]="['/home']" routerLinkActive="router-link-active" >Image Uplods</a></li>
+              <li><a [routerLink]="['/uregistation']" routerLinkActive="router-link-active" >Student Registation</a></li>
+              <li><a [routerLink]="['/changepassword']" routerLinkActive="router-link-active" >ChangePassword</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+</nav>
+  </aside>
+</div>

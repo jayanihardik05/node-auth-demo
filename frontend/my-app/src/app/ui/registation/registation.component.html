@@ -1,0 +1,83 @@
+<!-- Login Page Header Area Start -->
+<div class="seipkon-login-page-header-area">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="login-page-logo">
+
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-8">
+        <div class="login-page-logo-right">
+          <p>Already have an account? </p>
+          <a [routerLink]="['/login']" routerLinkActive="active">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Login Page Header Area End -->
+
+<!-- Login Form Start -->
+<div class="seipkon-login-form-area">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="login-form-box">
+          <h3>Sign up to BlueSoft</h3>
+          <form [formGroup]="regform" (ngSubmit)="onsubmit(regform.value,regform.valid)" novalidate>
+
+            <div class="form-group"
+              [ngClass]="{'has-error':IsLoginSubmitted && !(regform.controls.Name.valid), 'has-success': IsLoginSubmitted && (regform.controls.Name.valid)}">
+              <input type="text" placeholder="Enter Name" class="form-control" formControlName="Name">
+              <span class="hellock" *ngIf="IsLoginSubmitted && !(regform.controls.Name.valid)"> Name is
+                required. </span>
+            </div>
+            <div class="form-group"
+              [ngClass]="{'has-error':IsLoginSubmitted && !(regform.controls.PhoneNo.valid), 'has-success': IsLoginSubmitted && (regform.controls.PhoneNo.valid)}">
+              <input type="text" placeholder="Enter PhoneNo" pattern="[0-9]*" class="form-control" maxlength="10"  formControlName="PhoneNo">
+              <span class="hellock" *ngIf="IsLoginSubmitted && !(regform.controls.PhoneNo.valid)"> Phone_No is
+                required. </span>
+            </div>
+            <div class="form-group"
+              [ngClass]="{'has-error':IsLoginSubmitted && !(regform.controls.Pincode.valid), 'has-success': IsLoginSubmitted && (regform.controls.Pincode.valid)}">
+              <input type="text" placeholder="Enter Pincode"pattern="[0-9]*"class="form-control"  maxlength="4" formControlName="Pincode">
+              <span class="hellock" *ngIf="IsLoginSubmitted && !(regform.controls.Pincode.valid)"> Pin_No is
+                required. </span>
+            </div>
+            <div class="form-group"
+              [ngClass]="{'has-error':IsLoginSubmitted && !(regform.controls.email.valid), 'has-success': IsLoginSubmitted && (regform.controls.email.valid)}">
+              <input type="email" placeholder="Email Address" class="form-control" formControlName="email">
+              <span class="hellock" *ngIf="IsLoginSubmitted && !(regform.controls.email.valid)"> Email is
+                required. </span>
+            </div>
+            <div class="form-group"
+              [ngClass]="{'has-error':IsLoginSubmitted && !(regform.controls.password.valid), 'has-success': IsLoginSubmitted && (regform.controls.password.valid)}">
+              <input type="password" placeholder="Enter Password" class="form-control" formControlName="password">
+              <span class="hellock" *ngIf="IsLoginSubmitted && !(regform.controls.password.valid)"> password is
+                required. </span>
+            </div>
+            <div class="form-group"
+              [ngClass]="{'has-error':IsLoginSubmitted && !(regform.controls.confimPassword.valid), 'has-success': IsLoginSubmitted && (regform.controls.confimPassword.valid)}">
+              <input type="password" placeholder="Enter confimPassword " class="form-control" formControlName="confimPassword">
+              <span class="hellock" *ngIf="IsLoginSubmitted && !(regform.controls.confimPassword.valid)"> confimPassword is
+                required. </span>
+            </div>
+
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-layout-submit">
+                    <button type="submit">sign up</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
