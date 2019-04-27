@@ -32,7 +32,7 @@
             <div class="col-md-12">
                <div class="page-box">
                   <div class="form-example">
-                     <h3>Insert Student Detail</h3>
+                     <h3>{{ formLabel | titlecase }}</h3>
                      <div class="form-wrap">
                         <form [formGroup]="stdform" (ngSubmit)="onsubmit(stdform.value,stdform.valid)" novalidate>
                            <section>
@@ -97,7 +97,7 @@
                                     <div class="col-md-12">
                                        <div class="form-layout-submit">
                                           <button type="submit" class="btn btn-info">Submit</button>
-                                          <button type="reset" class="btn btn-danger">cancel</button>
+                                          <button type="reset" (click)="resetLable()" class="btn btn-danger">cancel</button>
                                        </div>
                                     </div>
                                  </div>
@@ -120,7 +120,7 @@
                   <!-- Header Top Search Start -->
                   <div class="header-top-search">
                      <form>
-                        <input type="search" [(ngModel)]="searchText"  placeholder="Search...">
+                        <input type="search" name="search" [(ngModel)]="searchText" placeholder="Search...">
                      </form>
                   </div>
                   <div class="advance-table">
@@ -134,6 +134,7 @@
                               <th>phoneNumber</th>
                               <th>DateofBirth</th>
                               <th>Delete</th>
+                              <th>Update</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -145,7 +146,14 @@
                               <td>{{item.DateofBirth}}</td>
                               <td> <a tooltip="Delete" (click)=" DeleteNews(item._id)" class="btn btn-sm btn-danger">
                                     <i class="fa fa-trash"></i>
-                                 </a></td>
+                                 </a>
+                              </td>
+                              <!-- update -->
+                              <td> <a tooltip="update" (click)=" updateStud(item)" class="btn btn-sm btn-danger">
+                                    <!-- <i class="fa fa-wrench"></i> -->
+                                    <i class="fa fa-pencil"></i>
+                                 </a>
+                              </td>
                            </tr>
                         </tbody>
                      </table>
