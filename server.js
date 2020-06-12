@@ -37,6 +37,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(2000, function () {
+app.listen(process.env.port || 3000, function () {
   console.log("server is run");
 });
